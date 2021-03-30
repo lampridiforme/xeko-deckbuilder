@@ -6,6 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { MatchResults } from "@stencil/router";
+import { NavInfo } from "./components/journal-navigator/journal-navigator";
 export namespace Components {
     interface AppHome {
     }
@@ -13,6 +14,13 @@ export namespace Components {
         "match": MatchResults;
     }
     interface AppRoot {
+    }
+    interface JournalMain {
+    }
+    interface JournalNavigator {
+        "navInfo": Array<NavInfo>;
+    }
+    interface JournalPage {
     }
 }
 declare global {
@@ -34,10 +42,31 @@ declare global {
         prototype: HTMLAppRootElement;
         new (): HTMLAppRootElement;
     };
+    interface HTMLJournalMainElement extends Components.JournalMain, HTMLStencilElement {
+    }
+    var HTMLJournalMainElement: {
+        prototype: HTMLJournalMainElement;
+        new (): HTMLJournalMainElement;
+    };
+    interface HTMLJournalNavigatorElement extends Components.JournalNavigator, HTMLStencilElement {
+    }
+    var HTMLJournalNavigatorElement: {
+        prototype: HTMLJournalNavigatorElement;
+        new (): HTMLJournalNavigatorElement;
+    };
+    interface HTMLJournalPageElement extends Components.JournalPage, HTMLStencilElement {
+    }
+    var HTMLJournalPageElement: {
+        prototype: HTMLJournalPageElement;
+        new (): HTMLJournalPageElement;
+    };
     interface HTMLElementTagNameMap {
         "app-home": HTMLAppHomeElement;
         "app-profile": HTMLAppProfileElement;
         "app-root": HTMLAppRootElement;
+        "journal-main": HTMLJournalMainElement;
+        "journal-navigator": HTMLJournalNavigatorElement;
+        "journal-page": HTMLJournalPageElement;
     }
 }
 declare namespace LocalJSX {
@@ -48,10 +77,20 @@ declare namespace LocalJSX {
     }
     interface AppRoot {
     }
+    interface JournalMain {
+    }
+    interface JournalNavigator {
+        "navInfo"?: Array<NavInfo>;
+    }
+    interface JournalPage {
+    }
     interface IntrinsicElements {
         "app-home": AppHome;
         "app-profile": AppProfile;
         "app-root": AppRoot;
+        "journal-main": JournalMain;
+        "journal-navigator": JournalNavigator;
+        "journal-page": JournalPage;
     }
 }
 export { LocalJSX as JSX };
@@ -61,6 +100,9 @@ declare module "@stencil/core" {
             "app-home": LocalJSX.AppHome & JSXBase.HTMLAttributes<HTMLAppHomeElement>;
             "app-profile": LocalJSX.AppProfile & JSXBase.HTMLAttributes<HTMLAppProfileElement>;
             "app-root": LocalJSX.AppRoot & JSXBase.HTMLAttributes<HTMLAppRootElement>;
+            "journal-main": LocalJSX.JournalMain & JSXBase.HTMLAttributes<HTMLJournalMainElement>;
+            "journal-navigator": LocalJSX.JournalNavigator & JSXBase.HTMLAttributes<HTMLJournalNavigatorElement>;
+            "journal-page": LocalJSX.JournalPage & JSXBase.HTMLAttributes<HTMLJournalPageElement>;
         }
     }
 }
