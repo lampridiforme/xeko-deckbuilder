@@ -25,11 +25,13 @@ export namespace Components {
     interface InfoImage {
     }
     interface JournalMain {
+        "match": MatchResults;
     }
     interface JournalNavigator {
         "navInfo": Array<NavInfo>;
     }
     interface JournalPage {
+        "selected": string;
     }
 }
 declare global {
@@ -116,11 +118,13 @@ declare namespace LocalJSX {
     interface InfoImage {
     }
     interface JournalMain {
+        "match"?: MatchResults;
     }
     interface JournalNavigator {
         "navInfo"?: Array<NavInfo>;
     }
     interface JournalPage {
+        "selected"?: string;
     }
     interface IntrinsicElements {
         "app-home": AppHome;

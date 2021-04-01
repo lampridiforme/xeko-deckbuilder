@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop } from '@stencil/core';
+import { Component, Host, h, Prop, Watch } from '@stencil/core';
 import { MatchResults } from '@stencil/router';
 import {state} from '../../store/store';
 import { madagascarNavData } from '../../utils/apimock';
@@ -10,7 +10,7 @@ import { madagascarNavData } from '../../utils/apimock';
 })
 export class JournalMain {
 
-  // @Prop() match: MatchResults;
+  @Prop() match: MatchResults;
 
   // componentDidLoad() {
   //   console.log(this.match?.params?.entry);
@@ -39,7 +39,7 @@ export class JournalMain {
     return (
       <Host>
         <journal-navigator navInfo={this.navInfo}></journal-navigator>
-        <journal-page></journal-page>
+        <journal-page selected={this.match?.params?.entry.toUpperCase()}></journal-page>
         
       </Host>
     );

@@ -30,3 +30,12 @@ nav {
   padding-top: .5em;
   padding-bottom: .5em;
 }
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+a:visited {
+  color: black;
+}

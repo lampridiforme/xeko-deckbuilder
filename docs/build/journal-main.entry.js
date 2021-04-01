@@ -6,7 +6,6 @@ const journalMainCss = ":host{display:grid;grid-template-columns:15em calc(100vw
 const JournalMain = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
-    // @Prop() match: MatchResults;
     // componentDidLoad() {
     //   console.log(this.match?.params?.entry);
     //   state.selected = this.match?.params?.entry || '';
@@ -29,7 +28,8 @@ const JournalMain = class {
     this.navInfo = [madagascarNavData];
   }
   render() {
-    return (h(Host, null, h("journal-navigator", { navInfo: this.navInfo }), h("journal-page", null)));
+    var _a, _b;
+    return (h(Host, null, h("journal-navigator", { navInfo: this.navInfo }), h("journal-page", { selected: (_b = (_a = this.match) === null || _a === void 0 ? void 0 : _a.params) === null || _b === void 0 ? void 0 : _b.entry.toUpperCase() })));
   }
 };
 JournalMain.style = journalMainCss;

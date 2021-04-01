@@ -1,4 +1,4 @@
-import { Component, Host, h, State, Prop } from '@stencil/core';
+import { Component, Host, h, State, Prop, Watch } from '@stencil/core';
 import {state, onChange} from '../../store/store';
 import { madagascarCardData } from '../../utils/apimock';
 import { CardData, CardType, Pack, Rarity, SpeciesType } from '../info-article/info-definitions';
@@ -38,6 +38,13 @@ const dataMap: Map<string, CardData> = new Map(madagascarCardData.map(entry => [
 })
 export class JournalPage {
 
+  // selected from url
+  @Prop() selected: string = '';
+  @Watch('selected')
+  onSelectedChange() {
+    state.selected = this.selected;
+  }
+
   @State() addDisabled = false;
   @State() removeDisabled = true;
   // rely on api mock map
@@ -48,6 +55,13 @@ export class JournalPage {
       this.checkButtonState();
       this.cardData = dataMap.get(val);
     });
+  }
+
+  componentDidLoad() {
+    if (this.selected !== '') {
+      state.selected = this.selected;
+      this.cardData = dataMap.get(this.selected);
+    }
   }
 
   private addToDeck = () => {

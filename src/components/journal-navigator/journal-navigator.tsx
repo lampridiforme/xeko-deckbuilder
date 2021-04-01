@@ -26,7 +26,14 @@ export class JournalNavigator {
               <div>
                 {
                   cards.map(({name, id}: {name: string, id: string}) => {
-                    return <div class='card' onClick={() => state.selected = id}>{name}</div>
+                    // return <div class='card' onClick={() => state.selected = id}>{name}</div>
+                    return(
+                      <stencil-route-link url={`/encyclopedia/${id}`}>
+                        <div class='card'>
+                          {name}
+                        </div>
+                      </stencil-route-link>
+                    )
                   })
                 }
               </div>
