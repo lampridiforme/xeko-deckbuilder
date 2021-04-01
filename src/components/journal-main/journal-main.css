@@ -1,3 +1,17 @@
 :host {
-  display: block;
+  display: grid;
+  grid-template-columns: 15em calc(100vw - 15em);
+}
+
+journal-navigator, journal-page {
+  height: 100vh;
+}
+
+journal-navigator {
+  width: 100%;
+  /* transition: width .5s; */
+}
+
+journal-navigator:hover {
+  /* width: 0; */
 }

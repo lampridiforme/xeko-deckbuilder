@@ -1,12 +1,32 @@
 :host {
-  display: block;
-  border: 5px dotted red;
+  display: inline-block;
+  background-color: skyblue;
+  transition: color 1s 0;
+}
+
+nav {
+  height: 100%;
+  overflow-y: auto;
 }
 
 .deck {
   font-size: 2em;
+  /* padding-left: calc(.2em * 1px); */
+  padding-left: .5em;
 }
 
 .card {
   font-size: 1em;
+  /* padding-left: calc(.5em * 1px); */
+  padding-left: 1em;
+  background-color: transparent;
+  transition-property: background-color, padding-top, padding-bottom;
+  transition-duration: .3s;
+  transition-delay: 0;
+}
+
+.card:hover, .card:focus {
+  background-color: white;
+  padding-top: .5em;
+  padding-bottom: .5em;
 }

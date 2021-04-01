@@ -9,15 +9,17 @@ export class AppRoot {
   render() {
     return (
       <div>
-        <header>
+        {/* <header>
           <h1>Stencil App Starter</h1>
-        </header>
+        </header> */}
 
         <main>
           <stencil-router>
             <stencil-route-switch scrollTopOffset={0}>
               <stencil-route url="/" component="app-home" exact={true} />
               <stencil-route url="/profile/:name" component="app-profile" />
+              <stencil-route url="/encyclopedia" component="journal-main" />
+              {/* <stencil-route url="/encyclopedia/:entry" component="journal-main" /> */}
             </stencil-route-switch>
           </stencil-router>
         </main>

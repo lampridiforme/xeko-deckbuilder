@@ -1,4 +1,12 @@
 :host {
   display: block;
-  border: 5px dashed blue;
+  background-color: pink;
+  text-align: center;
+  overflow-y: scroll;
 }
+
+.info {
+  text-align: center;
+  width: 100%;
+}
+

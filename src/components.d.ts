@@ -6,6 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { MatchResults } from "@stencil/router";
+import { CardData } from "./components/info-article/info-definitions";
 import { NavInfo } from "./components/journal-navigator/journal-navigator";
 export namespace Components {
     interface AppHome {
@@ -14,6 +15,14 @@ export namespace Components {
         "match": MatchResults;
     }
     interface AppRoot {
+    }
+    interface BorderedImage {
+    }
+    interface InfoArticle {
+        "cardData": CardData;
+        "imgSrc": string;
+    }
+    interface InfoImage {
     }
     interface JournalMain {
     }
@@ -42,6 +51,24 @@ declare global {
         prototype: HTMLAppRootElement;
         new (): HTMLAppRootElement;
     };
+    interface HTMLBorderedImageElement extends Components.BorderedImage, HTMLStencilElement {
+    }
+    var HTMLBorderedImageElement: {
+        prototype: HTMLBorderedImageElement;
+        new (): HTMLBorderedImageElement;
+    };
+    interface HTMLInfoArticleElement extends Components.InfoArticle, HTMLStencilElement {
+    }
+    var HTMLInfoArticleElement: {
+        prototype: HTMLInfoArticleElement;
+        new (): HTMLInfoArticleElement;
+    };
+    interface HTMLInfoImageElement extends Components.InfoImage, HTMLStencilElement {
+    }
+    var HTMLInfoImageElement: {
+        prototype: HTMLInfoImageElement;
+        new (): HTMLInfoImageElement;
+    };
     interface HTMLJournalMainElement extends Components.JournalMain, HTMLStencilElement {
     }
     var HTMLJournalMainElement: {
@@ -64,6 +91,9 @@ declare global {
         "app-home": HTMLAppHomeElement;
         "app-profile": HTMLAppProfileElement;
         "app-root": HTMLAppRootElement;
+        "bordered-image": HTMLBorderedImageElement;
+        "info-article": HTMLInfoArticleElement;
+        "info-image": HTMLInfoImageElement;
         "journal-main": HTMLJournalMainElement;
         "journal-navigator": HTMLJournalNavigatorElement;
         "journal-page": HTMLJournalPageElement;
@@ -77,6 +107,14 @@ declare namespace LocalJSX {
     }
     interface AppRoot {
     }
+    interface BorderedImage {
+    }
+    interface InfoArticle {
+        "cardData"?: CardData;
+        "imgSrc"?: string;
+    }
+    interface InfoImage {
+    }
     interface JournalMain {
     }
     interface JournalNavigator {
@@ -88,6 +126,9 @@ declare namespace LocalJSX {
         "app-home": AppHome;
         "app-profile": AppProfile;
         "app-root": AppRoot;
+        "bordered-image": BorderedImage;
+        "info-article": InfoArticle;
+        "info-image": InfoImage;
         "journal-main": JournalMain;
         "journal-navigator": JournalNavigator;
         "journal-page": JournalPage;
@@ -100,6 +141,9 @@ declare module "@stencil/core" {
             "app-home": LocalJSX.AppHome & JSXBase.HTMLAttributes<HTMLAppHomeElement>;
             "app-profile": LocalJSX.AppProfile & JSXBase.HTMLAttributes<HTMLAppProfileElement>;
             "app-root": LocalJSX.AppRoot & JSXBase.HTMLAttributes<HTMLAppRootElement>;
+            "bordered-image": LocalJSX.BorderedImage & JSXBase.HTMLAttributes<HTMLBorderedImageElement>;
+            "info-article": LocalJSX.InfoArticle & JSXBase.HTMLAttributes<HTMLInfoArticleElement>;
+            "info-image": LocalJSX.InfoImage & JSXBase.HTMLAttributes<HTMLInfoImageElement>;
             "journal-main": LocalJSX.JournalMain & JSXBase.HTMLAttributes<HTMLJournalMainElement>;
             "journal-navigator": LocalJSX.JournalNavigator & JSXBase.HTMLAttributes<HTMLJournalNavigatorElement>;
             "journal-page": LocalJSX.JournalPage & JSXBase.HTMLAttributes<HTMLJournalPageElement>;

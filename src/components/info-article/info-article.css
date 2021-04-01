@@ -1,0 +1,111 @@
+:host {
+  display: block;
+}
+
+.img-wrapper {
+  width: 100%;
+  height: 20em;
+  display: inline-block;
+  text-align: center;
+  background-color: goldenrod;
+}
+
+img {
+  display: inline-block;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 2em;
+}
+
+.text-wrapper {
+  width: 50%;
+  background-color: blue;
+  text-align: justify;
+  padding: 0 5em;
+  box-sizing: border-box;
+  display: inline-block;
+}
+
+.token {
+  width: 5em;
+  height: 5em;
+  background-color: red;
+  position:relative;
+  top: 0;
+  left: 0;
+
+  border-radius: 100em;
+  margin: 0 .5em;
+}
+
+
+.token:not(:nth-child(1)) {
+  margin: .5em;
+}
+
+.token-wrapper, .pack-wrapper {
+  background: blue;
+  display: inline-block;
+  height: 100%;
+  padding-top: 2em;
+  box-sizing: border-box;
+}
+
+#top-border {
+  display:inline-block;
+  background-color: orange;
+  height: 2em;
+  width: calc(100% - 2 * 2em);
+  position: absolute;
+  top: 0;
+  left: 2em;
+}
+
+#bottom-border {
+  display:inline-block;
+  height: 2em;
+  width: calc(100% - 2 * 2em);
+  background-color: purple;
+  position: absolute;
+  bottom: 0;
+  left: 2em;
+}
+
+#right-border {
+  display:inline-block;
+  height: calc(100% - 2 * 2em);
+  width: 2em;
+  background-color: green;
+  position: absolute;
+  right: 0;
+  top: 2em;
+}
+
+#left-border {
+  display:inline-block;
+  height: calc(100% - 2 * 2em);
+  width: 2em;
+  background-color: red;
+  position: absolute;
+  left: 0;
+  top: 2em;
+}
+
+.border-wrapper {
+  display:inline-block;
+  height: 100%;
+  position: relative;
+}
+
+.border > .left, .border > .right {
+  display: inline-block;
+  width: 50%;
+  height: 100%;
+  outline: 2px dashed white;
+}
+
+.border > .top, .border > .bottom {
+  width: 100%;
+  height: 50%;
+  outline: 2px dashed white;
+}

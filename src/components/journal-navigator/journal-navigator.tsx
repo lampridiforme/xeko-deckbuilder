@@ -1,9 +1,10 @@
-import { Component, Host, h, Prop } from '@stencil/core';
-import { state, onChange } from '../../store/store';
+import { Component, h, Prop } from '@stencil/core';
+import { state } from '../../store/store';
+
 
 export interface NavInfo {
   deck: string;
-  cards: Array<string>;
+  cards: Array<{name: string, id: string}>;
 }
 
 @Component({
@@ -20,18 +21,18 @@ export class JournalNavigator {
       <nav>
         {
           this.navInfo.map(({deck, cards}: NavInfo) => {
-            return <div>
-              <div class='deck'>{deck}</div>
+            return [
+              <div class='deck'>{deck}</div>,
               <div>
                 {
-                  cards.map((card: string) => {
-                    return <div class='card' onClick={() => state.selected = card}>{card}</div>
+                  cards.map(({name, id}: {name: string, id: string}) => {
+                    return <div class='card' onClick={() => state.selected = id}>{name}</div>
                   })
                 }
               </div>
-            </div>
+            ]
           })
-        }        
+        }    
       </nav>
     );
   }

@@ -1,4 +1,7 @@
-import { Component, Host, h } from '@stencil/core';
+import { Component, Host, h, Prop } from '@stencil/core';
+import { MatchResults } from '@stencil/router';
+import {state} from '../../store/store';
+import { madagascarNavData } from '../../utils/apimock';
 
 @Component({
   tag: 'journal-main',
@@ -7,28 +10,37 @@ import { Component, Host, h } from '@stencil/core';
 })
 export class JournalMain {
 
-  private navInfo = [
-    {
-      deck: 'Madagascar',
-      cards: [
-        'Ring Tailed Lemur',
-        'Fire Elemental',
-        'Fossa'
-      ]
-    },
-    {
-      deck: 'Costa Rica',
-      cards: [
-        'Blue Morpho Butterfly'
-      ]
-    }
-  ];
+  // @Prop() match: MatchResults;
+
+  // componentDidLoad() {
+  //   console.log(this.match?.params?.entry);
+  //   state.selected = this.match?.params?.entry || '';
+  // }
+
+  // private navInfo = [
+  //   {
+  //     deck: 'Madagascar',
+  //     cards: [
+  //       {name: 'Ring Tailed Lemur', id: 'mm0'},
+  //       // {name: 'Fire Elemental', id: 'mm1'}
+  //     ]
+  //   },
+  //   {
+  //     deck: 'Costa Rica',
+  //     cards: [
+  //       // {name: 'Blue Morpho Butterfly', id: 'cr0'}
+  //     ]
+  //   }
+  // ];
+
+  private navInfo = [madagascarNavData];
 
   render() {
     return (
       <Host>
         <journal-navigator navInfo={this.navInfo}></journal-navigator>
         <journal-page></journal-page>
+        
       </Host>
     );
   }
