@@ -1,5 +1,5 @@
 import { r as registerInstance, h, e as Host } from './index-37ada624.js';
-import { m as madagascarNavData } from './apimock-47628813.js';
+import { a as madagascarNavData } from './apimock-b5e898b7.js';
 import './info-definitions-0fd346da.js';
 
 const journalMainCss = ":host{display:grid;grid-template-columns:15em calc(100vw - 15em)}journal-navigator,journal-page{height:100vh}journal-navigator{width:100%;}journal-navigator:hover{}";
@@ -7,10 +7,6 @@ const journalMainCss = ":host{display:grid;grid-template-columns:15em calc(100vw
 const JournalMain = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);
-    // componentDidLoad() {
-    //   console.log(this.match?.params?.entry);
-    //   state.selected = this.match?.params?.entry || '';
-    // }
     // private navInfo = [
     //   {
     //     deck: 'Madagascar',
@@ -27,6 +23,10 @@ const JournalMain = class {
     //   }
     // ];
     this.navInfo = [madagascarNavData];
+  }
+  componentDidLoad() {
+    var _a, _b;
+    console.log('matched: ', (_b = (_a = this.match) === null || _a === void 0 ? void 0 : _a.params) === null || _b === void 0 ? void 0 : _b.entry);
   }
   render() {
     var _a, _b, _c;

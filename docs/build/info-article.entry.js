@@ -43,13 +43,14 @@ const InfoArticle = class {
   }
   onCardDataChange() {
     var _a, _b, _c, _d, _e, _f, _g, _h;
+    console.log('infopanel carddata', this.cardData);
     this.topBorderColors = this.generateBorders((_b = (_a = this.cardData) === null || _a === void 0 ? void 0 : _a.borders) === null || _b === void 0 ? void 0 : _b.top);
     this.bottomBorderColors = this.generateBorders((_d = (_c = this.cardData) === null || _c === void 0 ? void 0 : _c.borders) === null || _d === void 0 ? void 0 : _d.bottom);
     this.leftBorderColors = this.generateBorders((_f = (_e = this.cardData) === null || _e === void 0 ? void 0 : _e.borders) === null || _f === void 0 ? void 0 : _f.left);
     this.rightBorderColors = this.generateBorders((_h = (_g = this.cardData) === null || _g === void 0 ? void 0 : _g.borders) === null || _h === void 0 ? void 0 : _h.right);
   }
   generateBorders(borderSet) {
-    if (borderSet.size === 0) {
+    if (!borderSet || borderSet.size === 0) {
       return [cardBorderColorToString.get(null), cardBorderColorToString.get(null)];
     }
     else if (borderSet.size === 1) {
@@ -65,6 +66,7 @@ const InfoArticle = class {
   }
   componentDidLoad() {
     var _a, _b, _c, _d, _e, _f, _g, _h;
+    console.log(this.cardData);
     this.topBorderColors = this.generateBorders((_b = (_a = this.cardData) === null || _a === void 0 ? void 0 : _a.borders) === null || _b === void 0 ? void 0 : _b.top);
     this.bottomBorderColors = this.generateBorders((_d = (_c = this.cardData) === null || _c === void 0 ? void 0 : _c.borders) === null || _d === void 0 ? void 0 : _d.bottom);
     this.leftBorderColors = this.generateBorders((_f = (_e = this.cardData) === null || _e === void 0 ? void 0 : _e.borders) === null || _f === void 0 ? void 0 : _f.left);
@@ -75,25 +77,25 @@ const InfoArticle = class {
     console.log(this.rightBorderColors);
   }
   render() {
-    var _a, _b, _c, _d, _e, _f, _g;
+    var _a, _b, _c, _d, _e, _f, _g, _h, _j;
     return (h(Host, null, h("div", { class: 'img-wrapper' }, h("div", { class: 'token-wrapper' }, h("div", { class: "token" }), h("div", { class: "token" }), h("div", { class: "token" })), h("div", { class: 'border-wrapper' }, h("div", { id: 'top-border', class: 'border' }, h("div", { class: 'left', style: { 'background-color': this.topBorderColors[0] } }), h("div", { class: 'right', style: { 'background-color': this.topBorderColors[1] } })), h("div", { id: 'bottom-border', class: 'border' }, h("div", { class: 'left', style: { 'background-color': this.bottomBorderColors[0] } }), h("div", { class: 'right', style: { 'background-color': this.bottomBorderColors[1] } })), h("div", { id: 'left-border', class: 'border' }, h("div", { class: 'top', style: { 'background-color': this.leftBorderColors[0] } }), h("div", { class: 'bottom', style: { 'background-color': this.leftBorderColors[1] } })), h("div", { id: 'right-border', class: 'border' }, h("div", { class: 'top', style: { 'background-color': this.rightBorderColors[0] } }), h("div", { class: 'bottom', style: { 'background-color': this.rightBorderColors[1] } })), h("img", { src: `${assetPrefix}${this.imgSrc}` })), h("div", { class: 'pack-wrapper' }, h("div", { class: "token" }))), h("div", { class: 'text-wrapper' }, h("div", null, h("span", null, "Pack: "), packToString.get((_a = this.cardData) === null || _a === void 0 ? void 0 : _a.pack)), h("div", null, h("span", null, "Number: "), (_b = this.cardData) === null || _b === void 0 ? void 0 :
       _b.number), h("div", null, h("span", null, "Rarity: "), rarityToString.get((_c = this.cardData) === null || _c === void 0 ? void 0 : _c.rarity)), 
     // species card case
-    (this.cardData.cardType === CardType.species) ?
+    (((_d = this.cardData) === null || _d === void 0 ? void 0 : _d.cardType) === CardType.species) ?
       [
         h("div", null, h("span", null, "Level: "), this.cardData.level),
         h("div", null, h("span", null, "Species Type: "), speciesTypeToString.get(this.cardData.speciesType)),
-        h("div", null, h("span", null, "Scientific Name: "), (_d = this.cardData) === null || _d === void 0 ? void 0 :
-          _d.scientificName)
-      ] : (this.cardData.cardType === CardType.boost) ?
+        h("div", null, h("span", null, "Scientific Name: "), (_e = this.cardData) === null || _e === void 0 ? void 0 :
+          _e.scientificName)
+      ] : (((_f = this.cardData) === null || _f === void 0 ? void 0 : _f.cardType) === CardType.boost) ?
       // boost card case
       [] :
       // xeko card case
       [
-        h("div", null, h("span", null, "Required Levels: "), Array.from((_e = this.cardData) === null || _e === void 0 ? void 0 : _e.requiredLevels.values()).reduce((accu, level) => `${accu}${level}, `, ''))
-      ], h("div", null, h("span", null, "Rules Text: "), (_f = this.cardData) === null || _f === void 0 ? void 0 :
-      _f.rulesText), h("div", null, h("span", null, "Flavor Text: "), (_g = this.cardData) === null || _g === void 0 ? void 0 :
-      _g.flavorText))));
+        h("div", null, h("span", null, "Required Levels: "), (this.cardData) ? Array.from((_g = this.cardData) === null || _g === void 0 ? void 0 : _g.requiredLevels.values()).reduce((accu, level) => `${accu}${level}, `, '') : '')
+      ], h("div", null, h("span", null, "Rules Text: "), (_h = this.cardData) === null || _h === void 0 ? void 0 :
+      _h.rulesText), h("div", null, h("span", null, "Flavor Text: "), (_j = this.cardData) === null || _j === void 0 ? void 0 :
+      _j.flavorText))));
   }
   static get watchers() { return {
     "cardData": ["onCardDataChange"]

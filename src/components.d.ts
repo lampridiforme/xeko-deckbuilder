@@ -18,6 +18,8 @@ export namespace Components {
     }
     interface BorderedImage {
     }
+    interface DeckViewer {
+    }
     interface InfoArticle {
         "cardData": CardData;
         "imgSrc": string;
@@ -59,6 +61,12 @@ declare global {
         prototype: HTMLBorderedImageElement;
         new (): HTMLBorderedImageElement;
     };
+    interface HTMLDeckViewerElement extends Components.DeckViewer, HTMLStencilElement {
+    }
+    var HTMLDeckViewerElement: {
+        prototype: HTMLDeckViewerElement;
+        new (): HTMLDeckViewerElement;
+    };
     interface HTMLInfoArticleElement extends Components.InfoArticle, HTMLStencilElement {
     }
     var HTMLInfoArticleElement: {
@@ -94,6 +102,7 @@ declare global {
         "app-profile": HTMLAppProfileElement;
         "app-root": HTMLAppRootElement;
         "bordered-image": HTMLBorderedImageElement;
+        "deck-viewer": HTMLDeckViewerElement;
         "info-article": HTMLInfoArticleElement;
         "info-image": HTMLInfoImageElement;
         "journal-main": HTMLJournalMainElement;
@@ -110,6 +119,8 @@ declare namespace LocalJSX {
     interface AppRoot {
     }
     interface BorderedImage {
+    }
+    interface DeckViewer {
     }
     interface InfoArticle {
         "cardData"?: CardData;
@@ -131,6 +142,7 @@ declare namespace LocalJSX {
         "app-profile": AppProfile;
         "app-root": AppRoot;
         "bordered-image": BorderedImage;
+        "deck-viewer": DeckViewer;
         "info-article": InfoArticle;
         "info-image": InfoImage;
         "journal-main": JournalMain;
@@ -146,6 +158,7 @@ declare module "@stencil/core" {
             "app-profile": LocalJSX.AppProfile & JSXBase.HTMLAttributes<HTMLAppProfileElement>;
             "app-root": LocalJSX.AppRoot & JSXBase.HTMLAttributes<HTMLAppRootElement>;
             "bordered-image": LocalJSX.BorderedImage & JSXBase.HTMLAttributes<HTMLBorderedImageElement>;
+            "deck-viewer": LocalJSX.DeckViewer & JSXBase.HTMLAttributes<HTMLDeckViewerElement>;
             "info-article": LocalJSX.InfoArticle & JSXBase.HTMLAttributes<HTMLInfoArticleElement>;
             "info-image": LocalJSX.InfoImage & JSXBase.HTMLAttributes<HTMLInfoImageElement>;
             "journal-main": LocalJSX.JournalMain & JSXBase.HTMLAttributes<HTMLJournalMainElement>;

@@ -13,6 +13,16 @@ export class AppRoot {
           <h1>Stencil App Starter</h1>
         </header> */}
 
+        <div>
+          <stencil-route-link url="/encyclopedia">
+            <button>Encyclopedia</button>
+          </stencil-route-link>
+
+          <stencil-route-link url="/deck">
+            <button>Deck</button>
+          </stencil-route-link>
+        </div>
+
         <main>
           <stencil-router>
             <stencil-route-switch scrollTopOffset={0}>
@@ -20,6 +30,7 @@ export class AppRoot {
               <stencil-route url="/profile/:name" component="app-profile" />
               <stencil-route url="/encyclopedia/:entry" component="journal-main" />
               <stencil-route url="/encyclopedia" component="journal-main" />
+              <stencil-route url="/deck" component="deck-viewer" />
             </stencil-route-switch>
           </stencil-router>
         </main>

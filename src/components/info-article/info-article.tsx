@@ -1,5 +1,4 @@
 import { Component, Host, h, Prop, State, Watch } from '@stencil/core';
-import { madagascarCardData } from '../../utils/apimock';
 import { CardBorderColors, CardData, CardType, Pack, Rarity, SpeciesType } from './info-definitions';
 
 const assetPrefix = '/assets/';
@@ -45,6 +44,7 @@ export class InfoArticle {
   @Prop() cardData: CardData;
   @Watch('cardData')
   onCardDataChange() {
+    console.log('infopanel carddata', this.cardData);
     this.topBorderColors = this.generateBorders(this.cardData?.borders?.top);
     this.bottomBorderColors = this.generateBorders(this.cardData?.borders?.bottom);
     this.leftBorderColors = this.generateBorders(this.cardData?.borders?.left);
@@ -57,7 +57,7 @@ export class InfoArticle {
   @State() bottomBorderColors = [];
 
   private generateBorders(borderSet: Set<CardBorderColors>) {
-    if (borderSet.size === 0) {
+    if (!borderSet || borderSet.size === 0) {
       return [cardBorderColorToString.get(null), cardBorderColorToString.get(null)];
     } else if (borderSet.size === 1) {
       const entries = Array.from(borderSet.values());
@@ -71,6 +71,7 @@ export class InfoArticle {
   }
 
   componentDidLoad() {
+    console.log(this.cardData);
     this.topBorderColors = this.generateBorders(this.cardData?.borders?.top);
     this.bottomBorderColors = this.generateBorders(this.cardData?.borders?.bottom);
     this.leftBorderColors = this.generateBorders(this.cardData?.borders?.left);
@@ -126,7 +127,7 @@ export class InfoArticle {
           </div>
           {
             // species card case
-            (this.cardData.cardType === CardType.species) ?
+            (this.cardData?.cardType === CardType.species) ?
               [
                 <div>
                   <span>Level: </span>{this.cardData.level}
@@ -137,13 +138,13 @@ export class InfoArticle {
                 <div>
                   <span>Scientific Name: </span>{this.cardData?.scientificName}
                 </div>
-              ] : (this.cardData.cardType === CardType.boost) ?
+              ] : (this.cardData?.cardType === CardType.boost) ?
               // boost card case
               [] :
               // xeko card case
               [
                 <div>
-                  <span>Required Levels: </span>{Array.from(this.cardData?.requiredLevels.values()).reduce((accu, level) => `${accu}${level}, `, '')}
+                  <span>Required Levels: </span>{(this.cardData) ? Array.from(this.cardData?.requiredLevels.values()).reduce((accu, level) => `${accu}${level}, `, '') : ''}
                 </div>
               ]
           }

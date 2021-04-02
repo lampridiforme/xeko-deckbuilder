@@ -43,6 +43,9 @@ export class JournalPage {
   @Watch('selected')
   onSelectedChange() {
     state.selected = this.selected;
+    this.cardData = dataMap.get(this.selected);
+    console.log('new carddata', this.cardData);
+    console.log('selected', this.selected);
   }
 
   @State() addDisabled = false;
@@ -54,6 +57,7 @@ export class JournalPage {
     onChange('selected', (val) => {
       this.checkButtonState();
       this.cardData = dataMap.get(val);
+      console.log('new carddata', this.cardData);
     });
   }
 
@@ -61,7 +65,9 @@ export class JournalPage {
     if (this.selected !== '') {
       state.selected = this.selected;
       this.cardData = dataMap.get(this.selected);
+      console.log('new carddata', this.cardData);
     }
+    console.log('selected', this.selected);
   }
 
   private addToDeck = () => {
@@ -83,14 +89,14 @@ export class JournalPage {
   }
 
   render() {
+    console.log('selected', this.selected)
     return (
       <Host>
         {
-          (state.selected === '') ?
+          (this.selected == '' || !this.selected) ?
             <div>Click on a card to learn more about it!</div> :
             <div>
               <h2 class='name'>
-                {/* {state.selected} */}
                 {this.cardData?.name}
               </h2>
               {

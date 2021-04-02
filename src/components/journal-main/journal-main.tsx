@@ -12,10 +12,9 @@ export class JournalMain {
 
   @Prop() match: MatchResults;
 
-  // componentDidLoad() {
-  //   console.log(this.match?.params?.entry);
-  //   state.selected = this.match?.params?.entry || '';
-  // }
+  componentDidLoad() {
+    console.log('matched: ', this.match?.params?.entry);
+  }
 
   // private navInfo = [
   //   {
