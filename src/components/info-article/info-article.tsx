@@ -1,6 +1,6 @@
-import { Component, Host, h, Prop } from '@stencil/core';
+import { Component, Host, h, Prop, State, Watch } from '@stencil/core';
 import { madagascarCardData } from '../../utils/apimock';
-import { CardData, CardType, Pack, Rarity, SpeciesType } from './info-definitions';
+import { CardBorderColors, CardData, CardType, Pack, Rarity, SpeciesType } from './info-definitions';
 
 const assetPrefix = '/assets/';
 
@@ -25,6 +25,15 @@ const packToString: Map<Pack, string> = new Map([
   [Pack.china, 'China']
 ]);
 
+const cardBorderColorToString: Map<CardBorderColors, string> = new Map([
+  [CardBorderColors.blue, 'blue'],
+  [CardBorderColors.orange, 'orange'],
+  [CardBorderColors.purple, 'purple'],
+  [CardBorderColors.red, 'red'],
+  [CardBorderColors.yellow, 'yellow'],
+  [null, 'transparent']
+]);
+
 @Component({
   tag: 'info-article',
   styleUrl: 'info-article.css',
@@ -34,9 +43,42 @@ export class InfoArticle {
 
   @Prop() imgSrc = 'test.png';
   @Prop() cardData: CardData;
+  @Watch('cardData')
+  onCardDataChange() {
+    this.topBorderColors = this.generateBorders(this.cardData?.borders?.top);
+    this.bottomBorderColors = this.generateBorders(this.cardData?.borders?.bottom);
+    this.leftBorderColors = this.generateBorders(this.cardData?.borders?.left);
+    this.rightBorderColors = this.generateBorders(this.cardData?.borders?.right);
+  }
+
+  @State() topBorderColors = [];
+  @State() leftBorderColors = [];
+  @State() rightBorderColors = [];
+  @State() bottomBorderColors = [];
+
+  private generateBorders(borderSet: Set<CardBorderColors>) {
+    if (borderSet.size === 0) {
+      return [cardBorderColorToString.get(null), cardBorderColorToString.get(null)];
+    } else if (borderSet.size === 1) {
+      const entries = Array.from(borderSet.values());
+      console.log('single', entries);
+      return [cardBorderColorToString.get(entries[0]), cardBorderColorToString.get(entries[0])];
+    } else {
+      const entries = Array.from(borderSet.values());
+      console.log('double', entries);
+      return [cardBorderColorToString.get(entries[0]), cardBorderColorToString.get(entries[1])];
+    }
+  }
 
   componentDidLoad() {
-    console.log(madagascarCardData);
+    this.topBorderColors = this.generateBorders(this.cardData?.borders?.top);
+    this.bottomBorderColors = this.generateBorders(this.cardData?.borders?.bottom);
+    this.leftBorderColors = this.generateBorders(this.cardData?.borders?.left);
+    this.rightBorderColors = this.generateBorders(this.cardData?.borders?.right);
+    console.log(this.topBorderColors)
+    console.log(this.bottomBorderColors)
+    console.log(this.leftBorderColors)
+    console.log(this.rightBorderColors)
   }
 
   render() {
@@ -51,20 +93,20 @@ export class InfoArticle {
           </div>
           <div class='border-wrapper'>
             <div id='top-border' class='border'>
-              <div class='left'></div>
-              <div class='right'></div>
+              <div class='left' style={{'background-color': this.topBorderColors[0]}}></div>
+              <div class='right' style={{'background-color': this.topBorderColors[1]}}></div>
             </div>
             <div id='bottom-border' class='border'>
-              <div class='left'></div>
-              <div class='right'></div>
+              <div class='left' style={{'background-color': this.bottomBorderColors[0]}}></div>
+              <div class='right' style={{'background-color': this.bottomBorderColors[1]}}></div>
             </div>
             <div id='left-border' class='border'>
-              <div class='top'></div>
-              <div class='bottom'></div>
+              <div class='top' style={{'background-color': this.leftBorderColors[0]}}></div>
+              <div class='bottom' style={{'background-color': this.leftBorderColors[1]}}></div>
             </div>
             <div id='right-border' class='border'>
-              <div class='top'></div>
-              <div class='bottom'></div>
+              <div class='top' style={{'background-color': this.rightBorderColors[0]}}></div>
+              <div class='bottom' style={{'background-color': this.rightBorderColors[1]}}></div>
             </div>
             <img src={`${assetPrefix}${this.imgSrc}`}></img>
           </div>
@@ -90,7 +132,7 @@ export class InfoArticle {
                   <span>Level: </span>{this.cardData.level}
                 </div>,
                 <div>
-                  <span>Species Type: </span>{this.cardData?.speciesType ? speciesTypeToString.get(this.cardData.speciesType) : ''}
+                  <span>Species Type: </span>{speciesTypeToString.get(this.cardData.speciesType)}
                 </div>,
                 <div>
                   <span>Scientific Name: </span>{this.cardData?.scientificName}

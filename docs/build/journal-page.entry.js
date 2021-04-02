@@ -1,5 +1,6 @@
 import { f as getRenderingRef, i as forceUpdate, r as registerInstance, h, e as Host } from './index-37ada624.js';
-import { a as madagascarCardData, C as CardType } from './apimock-4da75532.js';
+import { a as madagascarCardData } from './apimock-47628813.js';
+import { C as CardType } from './info-definitions-0fd346da.js';
 
 const appendToMap = (map, propName, value) => {
     const items = map.get(propName);

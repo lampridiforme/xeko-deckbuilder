@@ -1,5 +1,6 @@
 import { r as registerInstance, h, e as Host } from './index-37ada624.js';
-import { m as madagascarNavData } from './apimock-4da75532.js';
+import { m as madagascarNavData } from './apimock-47628813.js';
+import './info-definitions-0fd346da.js';
 
 const journalMainCss = ":host{display:grid;grid-template-columns:15em calc(100vw - 15em)}journal-navigator,journal-page{height:100vh}journal-navigator{width:100%;}journal-navigator:hover{}";
 
@@ -28,8 +29,8 @@ const JournalMain = class {
     this.navInfo = [madagascarNavData];
   }
   render() {
-    var _a, _b;
-    return (h(Host, null, h("journal-navigator", { navInfo: this.navInfo }), h("journal-page", { selected: (_b = (_a = this.match) === null || _a === void 0 ? void 0 : _a.params) === null || _b === void 0 ? void 0 : _b.entry.toUpperCase() })));
+    var _a, _b, _c;
+    return (h(Host, null, h("journal-navigator", { navInfo: this.navInfo }), h("journal-page", { selected: ((_c = (_b = (_a = this.match) === null || _a === void 0 ? void 0 : _a.params) === null || _b === void 0 ? void 0 : _b.entry) === null || _c === void 0 ? void 0 : _c.toUpperCase()) || '' })));
   }
 };
 JournalMain.style = journalMainCss;

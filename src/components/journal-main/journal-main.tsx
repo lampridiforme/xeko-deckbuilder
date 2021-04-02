@@ -39,7 +39,7 @@ export class JournalMain {
     return (
       <Host>
         <journal-navigator navInfo={this.navInfo}></journal-navigator>
-        <journal-page selected={this.match?.params?.entry.toUpperCase()}></journal-page>
+        <journal-page selected={this.match?.params?.entry?.toUpperCase() || ''}></journal-page>
         
       </Host>
     );
