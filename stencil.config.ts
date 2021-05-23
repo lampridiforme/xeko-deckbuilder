@@ -11,7 +11,8 @@ export const config: Config = {
       type: 'www',
       // comment the following line to disable service workers in production
       serviceWorker: null,
-      baseUrl: 'https://myapp.local/',
+      // tysm for this blog post https://samiprogramming.medium.com/deploying-a-stenciljs-component-inside-a-virtual-directory-fac6b4bfb84c
+      baseUrl: '/xeko-deckbuilder',
       dir: 'docs'
     },
   ],
