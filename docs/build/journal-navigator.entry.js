@@ -1,7 +1,6 @@
 import { r as registerInstance, h } from './index-37ada624.js';
-import { s as state } from './store-12fabadf.js';
 
-const journalNavigatorCss = ":host{display:block;border:5px dotted red}.deck{font-size:2em}.card{font-size:1em}";
+const journalNavigatorCss = ":host{display:inline-block;transition:color 1s 0}nav{height:100%;overflow-y:auto}.deck{font-size:2em;padding-left:.5em}.card{font-size:1em;padding-left:1em;background-color:transparent;padding-top:.25em;padding-bottom:.25em}.card:hover,.card:focus{background-color:gold;}a{text-decoration:none;color:black}a:visited{color:black}";
 
 const JournalNavigator = class {
   constructor(hostRef) {
@@ -9,9 +8,13 @@ const JournalNavigator = class {
   }
   render() {
     return (h("nav", null, this.navInfo.map(({ deck, cards }) => {
-      return h("div", null, h("div", { class: 'deck' }, deck), h("div", null, cards.map((card) => {
-        return h("div", { class: 'card', onClick: () => state.selected = card }, card);
-      })));
+      return [
+        h("div", { class: 'deck' }, deck),
+        h("div", null, cards.map(({ name, id }) => {
+          // return <div class='card' onClick={() => state.selected = id}>{name}</div>
+          return (h("stencil-route-link", { url: `/encyclopedia/${id}` }, h("div", { class: 'card' }, name)));
+        }))
+      ];
     })));
   }
 };

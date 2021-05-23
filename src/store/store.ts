@@ -5,7 +5,7 @@ export { state, onChange };
 //     return JSON.stringify(newValue) !== JSON.stringify(oldValue);
 // }
 
-const { state, onChange } = createStore({
+const { state, onChange } = createStore<{userDeck: {[key: string]: number}, selected: string}>({
   userDeck: {},
   selected: ''
 }, /*shouldUpdate*/);

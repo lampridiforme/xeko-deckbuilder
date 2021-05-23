@@ -6,6 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { MatchResults } from "@stencil/router";
+import { CardData } from "./components/info-article/info-definitions";
 import { NavInfo } from "./components/journal-navigator/journal-navigator";
 export namespace Components {
     interface AppHome {
@@ -15,12 +16,24 @@ export namespace Components {
     }
     interface AppRoot {
     }
+    interface BorderedImage {
+    }
+    interface DeckViewer {
+    }
+    interface InfoArticle {
+        "cardData": CardData;
+        "imgSrc": string;
+    }
+    interface InfoImage {
+    }
     interface JournalMain {
+        "match": MatchResults;
     }
     interface JournalNavigator {
         "navInfo": Array<NavInfo>;
     }
     interface JournalPage {
+        "selected": string;
     }
 }
 declare global {
@@ -41,6 +54,30 @@ declare global {
     var HTMLAppRootElement: {
         prototype: HTMLAppRootElement;
         new (): HTMLAppRootElement;
+    };
+    interface HTMLBorderedImageElement extends Components.BorderedImage, HTMLStencilElement {
+    }
+    var HTMLBorderedImageElement: {
+        prototype: HTMLBorderedImageElement;
+        new (): HTMLBorderedImageElement;
+    };
+    interface HTMLDeckViewerElement extends Components.DeckViewer, HTMLStencilElement {
+    }
+    var HTMLDeckViewerElement: {
+        prototype: HTMLDeckViewerElement;
+        new (): HTMLDeckViewerElement;
+    };
+    interface HTMLInfoArticleElement extends Components.InfoArticle, HTMLStencilElement {
+    }
+    var HTMLInfoArticleElement: {
+        prototype: HTMLInfoArticleElement;
+        new (): HTMLInfoArticleElement;
+    };
+    interface HTMLInfoImageElement extends Components.InfoImage, HTMLStencilElement {
+    }
+    var HTMLInfoImageElement: {
+        prototype: HTMLInfoImageElement;
+        new (): HTMLInfoImageElement;
     };
     interface HTMLJournalMainElement extends Components.JournalMain, HTMLStencilElement {
     }
@@ -64,6 +101,10 @@ declare global {
         "app-home": HTMLAppHomeElement;
         "app-profile": HTMLAppProfileElement;
         "app-root": HTMLAppRootElement;
+        "bordered-image": HTMLBorderedImageElement;
+        "deck-viewer": HTMLDeckViewerElement;
+        "info-article": HTMLInfoArticleElement;
+        "info-image": HTMLInfoImageElement;
         "journal-main": HTMLJournalMainElement;
         "journal-navigator": HTMLJournalNavigatorElement;
         "journal-page": HTMLJournalPageElement;
@@ -77,17 +118,33 @@ declare namespace LocalJSX {
     }
     interface AppRoot {
     }
+    interface BorderedImage {
+    }
+    interface DeckViewer {
+    }
+    interface InfoArticle {
+        "cardData"?: CardData;
+        "imgSrc"?: string;
+    }
+    interface InfoImage {
+    }
     interface JournalMain {
+        "match"?: MatchResults;
     }
     interface JournalNavigator {
         "navInfo"?: Array<NavInfo>;
     }
     interface JournalPage {
+        "selected"?: string;
     }
     interface IntrinsicElements {
         "app-home": AppHome;
         "app-profile": AppProfile;
         "app-root": AppRoot;
+        "bordered-image": BorderedImage;
+        "deck-viewer": DeckViewer;
+        "info-article": InfoArticle;
+        "info-image": InfoImage;
         "journal-main": JournalMain;
         "journal-navigator": JournalNavigator;
         "journal-page": JournalPage;
@@ -100,6 +157,10 @@ declare module "@stencil/core" {
             "app-home": LocalJSX.AppHome & JSXBase.HTMLAttributes<HTMLAppHomeElement>;
             "app-profile": LocalJSX.AppProfile & JSXBase.HTMLAttributes<HTMLAppProfileElement>;
             "app-root": LocalJSX.AppRoot & JSXBase.HTMLAttributes<HTMLAppRootElement>;
+            "bordered-image": LocalJSX.BorderedImage & JSXBase.HTMLAttributes<HTMLBorderedImageElement>;
+            "deck-viewer": LocalJSX.DeckViewer & JSXBase.HTMLAttributes<HTMLDeckViewerElement>;
+            "info-article": LocalJSX.InfoArticle & JSXBase.HTMLAttributes<HTMLInfoArticleElement>;
+            "info-image": LocalJSX.InfoImage & JSXBase.HTMLAttributes<HTMLInfoImageElement>;
             "journal-main": LocalJSX.JournalMain & JSXBase.HTMLAttributes<HTMLJournalMainElement>;
             "journal-navigator": LocalJSX.JournalNavigator & JSXBase.HTMLAttributes<HTMLJournalNavigatorElement>;
             "journal-page": LocalJSX.JournalPage & JSXBase.HTMLAttributes<HTMLJournalPageElement>;
