@@ -135,7 +135,7 @@ export class InfoArticle {
                   <span class='label'>Level: </span>{this.cardData.level.reduce((accu, level, idx) => idx === this.cardData.level.length - 1 ? `${accu}${level}` : `${accu}${level}, `, '')}
                 </div>,
                 <div>
-                  <span class='label'>Species Type: </span>{speciesTypeToString.get(this.cardData.speciesType)}
+                  <span class='label'>Species Type: </span>{speciesTypeToString.get(this.cardData?.speciesType)}
                 </div>,
                 <div>
                   <span class='label'>Scientific Name: </span>{this.cardData?.scientificName}
@@ -150,9 +150,12 @@ export class InfoArticle {
                 </div>
               ]
           }
-          <div>
-            <span class='label'>Rules Text: </span>{this.cardData?.rulesText}
-          </div>
+          {
+            (this.cardData?.rulesText) ?
+            <div>
+              <span class='label'>Rules Text: </span>{this.cardData?.rulesText}
+            </div> : null
+          }
           {
             (this.cardData?.flavorText) ?
             <div>

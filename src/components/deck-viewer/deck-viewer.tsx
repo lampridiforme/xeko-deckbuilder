@@ -20,15 +20,17 @@ export class DeckViewer {
   }
 
   componentDidLoad() {
-    console.log(state.userDeck);
-    this.userDeck = Object.entries(state.userDeck);
+    // console.log(state.userDeck);
+    // this.userDeck = Object.entries(state.userDeck);
   }
 
   render() {
+
     return (
       <Host>
         {
-          this.userDeck.map(([id, count]) => (count > 0) ?
+          this.userDeck.filter(([id, count]) => count > 0).length > 0 ?
+            this.userDeck.map(([id, count]) => (count > 0) ?
             <div>
               <span>{dataMap.get(id)?.name}: {count}</span>
               <button onClick={() => state.userDeck = {...state.userDeck, [id]: count - 1}}>Remove 1</button>
@@ -37,7 +39,10 @@ export class DeckViewer {
                 <button>Go to Entry</button>
               </stencil-route-link>
             </div> : null
-          )
+          ) : 
+          <div>
+            Start building your deck by adding a card from the encyclopedia page
+          </div> 
         }
       </Host>
     );

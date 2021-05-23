@@ -83,7 +83,7 @@ export class JournalPage {
   };
 
   private checkButtonState() {
-    this.addDisabled = state.userDeck[state.selected] > 2;
+    this.addDisabled = state.userDeck[state.selected] > 2 || Object.values(state.userDeck).reduce((accu, cardCount) => accu + cardCount, 0) >= 40;
     this.removeDisabled = !state.userDeck[state.selected] || state.userDeck[state.selected] < 1;
   }
 
@@ -91,30 +91,32 @@ export class JournalPage {
     console.log('selected', this.selected)
     return (
       <Host>
-        <div id='flex-wrapper'>
           {
             (this.selected == '' || !this.selected) ?
               <div>Click on a card to learn more about it!</div> :
-              <div id='content'>
-                <h2 class='name'>
-                  {this.cardData?.name}
-                </h2>
-                {
-                  // (this.cardData?.cardType === CardType.species) ?
-                  //   <h4 class='scientific-name'>
-                  //     {this.cardData.scientificName}
-                  //   </h4> : null
-                }
-                <div>
+              [
+                <div id='deck'>
                   <span>You have {(!!state.userDeck[state.selected]) ? state.userDeck[state.selected] : 0} in your deck.</span>
                   <button disabled={this.addDisabled} onClick={this.addToDeck}>Add to Deck</button>
                   <button disabled={this.removeDisabled} onClick={this.removeFromDeck}>Remove from Deck</button>
+                </div>,
+                <div id='flex-wrapper'>
+                  <div id='content'>
+                    <h2 class='name'>
+                      {this.cardData?.name}
+                    </h2>
+                    {
+                      // (this.cardData?.cardType === CardType.species) ?
+                      //   <h4 class='scientific-name'>
+                      //     {this.cardData.scientificName}
+                      //   </h4> : null
+                    }
+                    <info-article cardData={this.cardData}></info-article>
+                  </div>
                 </div>
-                <info-article cardData={this.cardData}></info-article>
-              </div>
+              ]
           }
           {/* TODO: make a request to some db for card data, might just hardcode for now */}
-        </div>
       </Host>
     );
   }

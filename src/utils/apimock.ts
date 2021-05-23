@@ -2565,12 +2565,12 @@ const borderStringToEnum: Map<string, CardBorderColors> = new Map([
 ]);
 
 const speciesTypeToEnum: Map<string, SpeciesType> = new Map([
-    ['amphibian', SpeciesType.amphibian],
-    ['bird', SpeciesType.bird],
-    ['insect', SpeciesType.insect],
-    ['mammal', SpeciesType.mammal],
-    ['plant', SpeciesType.plant],
-    ['reptile', SpeciesType.reptile],
+    ['Amphibian', SpeciesType.amphibian],
+    ['Bird', SpeciesType.bird],
+    ['Insect', SpeciesType.insect],
+    ['Mammal', SpeciesType.mammal],
+    ['Plant', SpeciesType.plant],
+    ['Reptile', SpeciesType.reptile],
 ]);
 
 export const madagascarCardData: Array<CardData> = Object.entries(data).map(([key, value]) => {

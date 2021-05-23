@@ -11,12 +11,17 @@
 }
 
 #content {
-  /* border: 5px solid black; */
+  border: 5px solid black;
+  border-radius: 10px;
   width: 40%;
 }
 
 #flex-wrapper {
   display: flex;
   justify-content: center;
-  margin-bottom: 1em;
+  margin-bottom: 1.5em;
+}
+
+#deck {
+  margin-bottom: 1.5em;
 }

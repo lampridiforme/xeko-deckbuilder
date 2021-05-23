@@ -15,7 +15,13 @@ h1 {
 }
 
 #toolbar {
+  box-sizing: border-box;
   height: 50px;
+  border-bottom: 5px solid black;
+}
+
+#toolbar button {
+  height: 100%;
 }
 
 #content {
