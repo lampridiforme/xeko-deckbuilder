@@ -13,3 +13,27 @@ h1 {
   color: #fff;
   padding: 0 12px;
 }
+
+#toolbar {
+  box-sizing: border-box;
+  height: 50px;
+  border-bottom: 5px solid black;
+}
+
+#toolbar button {
+  height: 100%;
+}
+
+#content {
+  max-height: calc(100vh - 50px);
+  overflow: auto;
+}
+
+
+/* .sticky {
+  position: absolute;
+}
+
+.static {
+  position: static;
+} */

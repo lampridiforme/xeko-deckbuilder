@@ -52,4 +52,4 @@ const storageAvailable = (win, type) => {
     }
 };
 
-export { supportsHistory as a, supportsPopStateOnHashChange as b, isExtraneousPopstateEvent as c, supportsGoWithoutReloadUsingHash as d, getConfirmation as g, isModifiedEvent as i, storageAvailable as s };
+export { supportsHistory as a, supportsPopStateOnHashChange as b, supportsGoWithoutReloadUsingHash as c, isModifiedEvent as d, getConfirmation as g, isExtraneousPopstateEvent as i, storageAvailable as s };

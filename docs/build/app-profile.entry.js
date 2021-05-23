@@ -13,6 +13,7 @@ const AppProfile = class {
     return '';
   }
   render() {
+    console.log(this.match.params);
     if (this.match && this.match.params.name) {
       return (h("div", { class: "app-profile" }, h("p", null, "Hello! My name is ", this.normalize(this.match.params.name), ". My name was passed in through a route param!")));
     }

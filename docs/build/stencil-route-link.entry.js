@@ -1,6 +1,6 @@
 import { r as registerInstance, h, g as getElement } from './index-37ada624.js';
 import { m as matchPath } from './match-path-760e1797.js';
-import { i as isModifiedEvent } from './dom-utils-109a7d75.js';
+import { d as isModifiedEvent } from './dom-utils-8e73e88b.js';
 import { A as ActiveRouter } from './active-router-2cbaa815.js';
 import './location-utils-fea12957.js';
 
