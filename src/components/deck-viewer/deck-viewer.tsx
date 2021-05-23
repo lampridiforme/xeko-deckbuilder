@@ -1,9 +1,7 @@
 import { Component, Host, h, State } from '@stencil/core';
 import { state, onChange } from '../../store/store';
-import { madagascarCardData } from '../../utils/apimock';
+import { dataMap, madagascarCardData } from '../../utils/apimock';
 import { CardData } from '../info-article/info-definitions';
-
-const dataMap: Map<string, CardData> = new Map(madagascarCardData.map(entry => [entry.id, entry]));
 
 @Component({
   tag: 'deck-viewer',

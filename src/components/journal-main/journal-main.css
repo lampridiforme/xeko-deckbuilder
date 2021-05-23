@@ -4,7 +4,8 @@
 }
 
 journal-navigator, journal-page {
-  height: 100vh;
+  height: calc(100vh - 50px);
+  box-sizing: border-box;
 }
 
 journal-navigator {

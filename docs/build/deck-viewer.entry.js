@@ -1,11 +1,10 @@
 import { r as registerInstance, h, e as Host } from './index-37ada624.js';
 import { o as onChange, s as state } from './store-12fabadf.js';
-import { m as madagascarCardData } from './apimock-b5e898b7.js';
+import { d as dataMap } from './apimock-21630b6a.js';
 import './info-definitions-0fd346da.js';
 
 const deckViewerCss = ":host{display:block}";
 
-const dataMap = new Map(madagascarCardData.map(entry => [entry.id, entry]));
 const DeckViewer = class {
   constructor(hostRef) {
     registerInstance(this, hostRef);

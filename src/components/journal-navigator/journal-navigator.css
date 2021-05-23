@@ -1,6 +1,6 @@
 :host {
   display: inline-block;
-  background-color: skyblue;
+  /* background-color: skyblue; */
   transition: color 1s 0;
 }
 
@@ -20,15 +20,18 @@ nav {
   /* padding-left: calc(.5em * 1px); */
   padding-left: 1em;
   background-color: transparent;
-  transition-property: background-color, padding-top, padding-bottom;
+  /* transition-property: background-color, padding-top, padding-bottom;
   transition-duration: .3s;
-  transition-delay: 0;
+  transition-delay: 0; */
+  padding-top: .25em;
+  padding-bottom: .25em;
 }
 
 .card:hover, .card:focus {
-  background-color: white;
-  padding-top: .5em;
-  padding-bottom: .5em;
+  /* background-color: white; */
+  background-color: gold;
+  /* padding-top: .5em;
+  padding-bottom: .5em; */
 }
 
 a {

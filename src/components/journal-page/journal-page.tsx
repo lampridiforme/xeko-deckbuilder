@@ -1,6 +1,6 @@
 import { Component, Host, h, State, Prop, Watch } from '@stencil/core';
 import {state, onChange} from '../../store/store';
-import { madagascarCardData } from '../../utils/apimock';
+import { dataMap, madagascarCardData } from '../../utils/apimock';
 import { CardData, CardType, Pack, Rarity, SpeciesType } from '../info-article/info-definitions';
 
 // const dataMap: Map<string, CardData> = new Map([
@@ -29,7 +29,6 @@ import { CardData, CardType, Pack, Rarity, SpeciesType } from '../info-article/i
 //   }]
 // ]);
 
-const dataMap: Map<string, CardData> = new Map(madagascarCardData.map(entry => [entry.id, entry]));
 
 @Component({
   tag: 'journal-page',
@@ -92,28 +91,30 @@ export class JournalPage {
     console.log('selected', this.selected)
     return (
       <Host>
-        {
-          (this.selected == '' || !this.selected) ?
-            <div>Click on a card to learn more about it!</div> :
-            <div>
-              <h2 class='name'>
-                {this.cardData?.name}
-              </h2>
-              {
-                (this.cardData?.cardType === CardType.species) ?
-                  <h4 class='scientific-name'>
-                    {this.cardData.scientificName}
-                  </h4> : null
-              }
-              <div>
-                <span>You have {(!!state.userDeck[state.selected]) ? state.userDeck[state.selected] : 0} in your deck.</span>
-                <button disabled={this.addDisabled} onClick={this.addToDeck}>Add to Deck</button>
-                <button disabled={this.removeDisabled} onClick={this.removeFromDeck}>Remove from Deck</button>
+        <div id='flex-wrapper'>
+          {
+            (this.selected == '' || !this.selected) ?
+              <div>Click on a card to learn more about it!</div> :
+              <div id='content'>
+                <h2 class='name'>
+                  {this.cardData?.name}
+                </h2>
+                {
+                  // (this.cardData?.cardType === CardType.species) ?
+                  //   <h4 class='scientific-name'>
+                  //     {this.cardData.scientificName}
+                  //   </h4> : null
+                }
+                <div>
+                  <span>You have {(!!state.userDeck[state.selected]) ? state.userDeck[state.selected] : 0} in your deck.</span>
+                  <button disabled={this.addDisabled} onClick={this.addToDeck}>Add to Deck</button>
+                  <button disabled={this.removeDisabled} onClick={this.removeFromDeck}>Remove from Deck</button>
+                </div>
+                <info-article cardData={this.cardData}></info-article>
               </div>
-              <info-article cardData={this.cardData}></info-article>
-            </div>
-        }
-        {/* TODO: make a request to some db for card data, might just hardcode for now */}
+          }
+          {/* TODO: make a request to some db for card data, might just hardcode for now */}
+        </div>
       </Host>
     );
   }

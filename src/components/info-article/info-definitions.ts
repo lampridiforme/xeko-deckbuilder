@@ -56,7 +56,7 @@ export interface CardData {
     borders: CardBorders;
     energy: number;
     points: number;
-    level: number;
+    level: Array<number>;
     rulesText: string;
     flavorText: string;
 

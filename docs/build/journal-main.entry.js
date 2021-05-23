@@ -1,8 +1,8 @@
 import { r as registerInstance, h, e as Host } from './index-37ada624.js';
-import { a as madagascarNavData } from './apimock-b5e898b7.js';
+import { m as madagascarNavData } from './apimock-21630b6a.js';
 import './info-definitions-0fd346da.js';
 
-const journalMainCss = ":host{display:grid;grid-template-columns:15em calc(100vw - 15em)}journal-navigator,journal-page{height:100vh}journal-navigator{width:100%;}journal-navigator:hover{}";
+const journalMainCss = ":host{display:grid;grid-template-columns:15em calc(100vw - 15em)}journal-navigator,journal-page{height:calc(100vh - 50px);box-sizing:border-box}journal-navigator{width:100%;}journal-navigator:hover{}";
 
 const JournalMain = class {
   constructor(hostRef) {

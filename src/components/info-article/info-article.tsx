@@ -33,6 +33,13 @@ const cardBorderColorToString: Map<CardBorderColors, string> = new Map([
   [null, 'transparent']
 ]);
 
+const packToAbbreviatedString: Map<Pack, string> = new Map([
+  [Pack.madagascar, 'MM'],
+  [Pack.costarica, 'CR'],
+  [Pack.indonesia, 'IN'],
+  [Pack.china, 'CH']
+]);
+
 @Component({
   tag: 'info-article',
   styleUrl: 'info-article.css',
@@ -76,10 +83,6 @@ export class InfoArticle {
     this.bottomBorderColors = this.generateBorders(this.cardData?.borders?.bottom);
     this.leftBorderColors = this.generateBorders(this.cardData?.borders?.left);
     this.rightBorderColors = this.generateBorders(this.cardData?.borders?.right);
-    console.log(this.topBorderColors)
-    console.log(this.bottomBorderColors)
-    console.log(this.leftBorderColors)
-    console.log(this.rightBorderColors)
   }
 
   render() {
@@ -88,55 +91,54 @@ export class InfoArticle {
         {/* Actual info coming soon, I'll fill this out once I can query an API for info... */}
         <div class='img-wrapper'>
           <div class='token-wrapper'>
-            <div class="token"></div>
-            <div class="token"></div>
-            <div class="token"></div>
+            <div class="token" id='points'>{this.cardData?.points}</div>
+            <div class="token" id='energy'>{this.cardData?.energy}</div>
           </div>
           <div class='border-wrapper'>
             <div id='top-border' class='border'>
-              <div class='left' style={{'background-color': this.topBorderColors[0]}}></div>
-              <div class='right' style={{'background-color': this.topBorderColors[1]}}></div>
+              <div class='left' style={{'background-color': this.topBorderColors[0], 'border-color': (this.cardData?.borders?.top?.size > 0) ? 'black' : 'transparent'}}></div>
+              <div class='right' style={{'background-color': this.topBorderColors[1], 'border-color': (this.cardData?.borders?.top?.size > 0) ? 'black' : 'transparent'}}></div>
             </div>
             <div id='bottom-border' class='border'>
-              <div class='left' style={{'background-color': this.bottomBorderColors[0]}}></div>
-              <div class='right' style={{'background-color': this.bottomBorderColors[1]}}></div>
+              <div class='left' style={{'background-color': this.bottomBorderColors[0], 'border-color': (this.cardData?.borders?.bottom?.size > 0) ? 'black' : 'transparent'}}></div>
+              <div class='right' style={{'background-color': this.bottomBorderColors[1], 'border-color': (this.cardData?.borders?.bottom?.size > 0) ? 'black' : 'transparent'}}></div>
             </div>
             <div id='left-border' class='border'>
-              <div class='top' style={{'background-color': this.leftBorderColors[0]}}></div>
-              <div class='bottom' style={{'background-color': this.leftBorderColors[1]}}></div>
+              <div class='top' style={{'background-color': this.leftBorderColors[0], 'border-color': (this.cardData?.borders?.left?.size > 0) ? 'black' : 'transparent'}}></div>
+              <div class='bottom' style={{'background-color': this.leftBorderColors[1], 'border-color': (this.cardData?.borders?.left?.size > 0) ? 'black' : 'transparent'}}></div>
             </div>
             <div id='right-border' class='border'>
-              <div class='top' style={{'background-color': this.rightBorderColors[0]}}></div>
-              <div class='bottom' style={{'background-color': this.rightBorderColors[1]}}></div>
+              <div class='top' style={{'background-color': this.rightBorderColors[0], 'border-color': (this.cardData?.borders?.right?.size > 0) ? 'black' : 'transparent'}}></div>
+              <div class='bottom' style={{'background-color': this.rightBorderColors[1], 'border-color': (this.cardData?.borders?.right?.size > 0) ? 'black' : 'transparent'}}></div>
             </div>
             <img src={`${assetPrefix}${this.imgSrc}`}></img>
           </div>
           <div class='pack-wrapper'>
-            <div class="token"></div>
+            <div class="token" id='pack'>{packToAbbreviatedString.get(this.cardData?.pack)}</div>
           </div>
         </div>
         <div class='text-wrapper'>
           <div>
-            <span>Pack: </span>{packToString.get(this.cardData?.pack)}
+            <span class='label'>Pack: </span>{packToString.get(this.cardData?.pack)}
           </div>
           <div>
-            <span>Number: </span>{this.cardData?.number}
+            <span class='label'>Number: </span>{this.cardData?.number}
           </div>
           <div>
-            <span>Rarity: </span>{rarityToString.get(this.cardData?.rarity)}
+            <span class='label'>Rarity: </span>{rarityToString.get(this.cardData?.rarity)}
           </div>
           {
             // species card case
             (this.cardData?.cardType === CardType.species) ?
               [
                 <div>
-                  <span>Level: </span>{this.cardData.level}
+                  <span class='label'>Level: </span>{this.cardData.level.reduce((accu, level, idx) => idx === this.cardData.level.length - 1 ? `${accu}${level}` : `${accu}${level}, `, '')}
                 </div>,
                 <div>
-                  <span>Species Type: </span>{speciesTypeToString.get(this.cardData.speciesType)}
+                  <span class='label'>Species Type: </span>{speciesTypeToString.get(this.cardData.speciesType)}
                 </div>,
                 <div>
-                  <span>Scientific Name: </span>{this.cardData?.scientificName}
+                  <span class='label'>Scientific Name: </span>{this.cardData?.scientificName}
                 </div>
               ] : (this.cardData?.cardType === CardType.boost) ?
               // boost card case
@@ -144,16 +146,19 @@ export class InfoArticle {
               // xeko card case
               [
                 <div>
-                  <span>Required Levels: </span>{(this.cardData) ? Array.from(this.cardData?.requiredLevels.values()).reduce((accu, level) => `${accu}${level}, `, '') : ''}
+                  <span class='label'>Required Levels: </span>{(this.cardData) ? Array.from(this.cardData?.requiredLevels.values()).reduce((accu, level) => `${accu}${level}, `, '') : ''}
                 </div>
               ]
           }
           <div>
-            <span>Rules Text: </span>{this.cardData?.rulesText}
+            <span class='label'>Rules Text: </span>{this.cardData?.rulesText}
           </div>
-          <div>
-            <span>Flavor Text: </span>{this.cardData?.flavorText}
-          </div>
+          {
+            (this.cardData?.flavorText) ?
+            <div>
+              <span class='label'>Flavor Text: </span>{this.cardData?.flavorText}
+            </div> : null
+          }
         </div>
       </Host>
     );

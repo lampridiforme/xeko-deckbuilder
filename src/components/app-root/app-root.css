@@ -13,3 +13,21 @@ h1 {
   color: #fff;
   padding: 0 12px;
 }
+
+#toolbar {
+  height: 50px;
+}
+
+#content {
+  max-height: calc(100vh - 50px);
+  overflow: auto;
+}
+
+
+/* .sticky {
+  position: absolute;
+}
+
+.static {
+  position: static;
+} */

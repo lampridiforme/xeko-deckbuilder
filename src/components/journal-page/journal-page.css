@@ -1,6 +1,6 @@
 :host {
   display: block;
-  background-color: pink;
+  /* background-color: pink; */
   text-align: center;
   overflow-y: scroll;
 }
@@ -10,3 +10,13 @@
   width: 100%;
 }
 
+#content {
+  /* border: 5px solid black; */
+  width: 40%;
+}
+
+#flex-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1em;
+}
